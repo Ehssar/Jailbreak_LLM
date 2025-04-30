@@ -37,7 +37,7 @@ def get_sentence_embedding(model, tokenizer, sentence):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--model", type=str, help="which model to use", default="Llama-2-7b-chat-hf"
+        "--model", type=str, help="which model to use", default="Vicuna-7B"
     )
     parser.add_argument(
         "--n_sample",
@@ -100,6 +100,7 @@ def main():
             torch_dtype=torch.float16,
             low_cpu_mem_usage=True,
             device_map="auto",
+            offload_folder="./offload_folder"
         )
 
     tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_PATH)
